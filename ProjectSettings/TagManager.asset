@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - obstacle
+  - Power up
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - player
   - "obst\xE1culos"
   - bg
-  - 
+  - hud
   - 
   - 
   - 

@@ -31,12 +31,16 @@ public class player : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jump_velocity);
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("obstacle"))
         {
             Destroy(gameObject);
             Debug.Log("colidiu");
         }
+        //else (collision.gameObject.CompareTag("Power up"))
+       // {
+
+        //}
     }
 }
