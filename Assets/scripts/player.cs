@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class player : MonoBehaviour
 
@@ -36,11 +37,18 @@ public class player : MonoBehaviour
         if (collision.gameObject.CompareTag("obstacle"))
         {
             Destroy(gameObject);
-            Debug.Log("colidiu");
+            //Debug.Log("colidiu");
         }
-        //else (collision.gameObject.CompareTag("Power up"))
-       // {
-
-        //}
+        if (collision.gameObject.CompareTag("Power up"))
+        {
+            this.GetComponent<Collider>().enabled = false;
+        }
     }
+
+    void PowerUpIntangible()
+    {
+
+    }
+
+
 }
