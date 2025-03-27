@@ -1,12 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-
 
 public class player : MonoBehaviour
-
 {
     public int jump_velocity;  
     private Rigidbody2D rb;
@@ -20,12 +16,11 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            //pulo
-         if (Input.GetKeyDown(KeyCode.Space))
-         {
+        // Jump
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             Jump();
-         }
-
+        }
     }
 
     void Jump()
@@ -38,7 +33,6 @@ public class player : MonoBehaviour
         if (collision.gameObject.CompareTag("obstacle"))
         {
             Destroy(gameObject);
-            //Debug.Log("colidiu com o obstáculo");
         }
         if (collision.gameObject.CompareTag("Power up"))
         {
@@ -49,17 +43,46 @@ public class player : MonoBehaviour
 
     void PowerUpIntangible()
     {
-        this.GetComponent<BoxCollider2D>().enabled = false;
-        StartCoroutine(PowerUpFinish());
+        // Disable the collider so the player becomes intangible
+        BoxCollider2D collider = GetComponent<BoxCollider2D>();
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
+
+        // Reduce the sprite's alpha to 30%
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            Color c = sr.color;
+            c.a = 0.3f;
+            sr.color = c;
+        }
+
         Debug.Log("ligou o power up");
-        //gameObject.GetComponent<Renderer> ().material.color.a = 0;
+        StartCoroutine(PowerUpFinish());
     }
 
     IEnumerator PowerUpFinish()
     {
         yield return new WaitForSeconds(5f);
-        this.GetComponent<BoxCollider2D>().enabled = true;
+
+        // Re-enable the collider
+        BoxCollider2D collider = GetComponent<BoxCollider2D>();
+        if (collider != null)
+        {
+            collider.enabled = true;
+        }
+
+        // Reset the sprite's alpha back to 100%
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            Color c = sr.color;
+            c.a = 1f;
+            sr.color = c;
+        }
+
         Debug.Log("desligou o power up");
     }
-
 }
