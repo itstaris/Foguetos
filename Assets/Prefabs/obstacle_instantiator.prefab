@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToInstantiate: {fileID: 2854954582362521417, guid: 7d0197685cf85154ab6c48dd60327aae, type: 3}
-  minTime: 2
-  maxTime: 4
+  minTime: 0.5
+  maxTime: 2
   minY: -4
   maxY: 4
