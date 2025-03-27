@@ -17,11 +17,10 @@ public class powerUp : MonoBehaviour
         Vector3 movement = new Vector3(1, 0, 0);
         transform.Translate(movement * velocity * Time.deltaTime);
     }
-    void CollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Finish") || collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("colidiu");
             Destroy(gameObject);
         }
     }

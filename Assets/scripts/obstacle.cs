@@ -17,4 +17,12 @@ public class obstacle : MonoBehaviour
         Vector3 movement = new Vector3(1, 0, 0);
         transform.Translate(movement * velocity * Time.deltaTime);
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+            Destroy(gameObject);
+            Debug.Log("colidiu");
+        }
+    }
 }

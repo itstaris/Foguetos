@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
+
 public class player : MonoBehaviour
 
 {
@@ -37,18 +38,28 @@ public class player : MonoBehaviour
         if (collision.gameObject.CompareTag("obstacle"))
         {
             Destroy(gameObject);
-            //Debug.Log("colidiu");
+            //Debug.Log("colidiu com o obstáculo");
         }
         if (collision.gameObject.CompareTag("Power up"))
         {
-            this.GetComponent<Collider>().enabled = false;
+            Debug.Log("colidiu com o power up");
+            PowerUpIntangible();
         }
     }
 
     void PowerUpIntangible()
     {
-
+        this.GetComponent<BoxCollider2D>().enabled = false;
+        StartCoroutine(PowerUpFinish());
+        Debug.Log("ligou o power up");
+        //gameObject.GetComponent<Renderer> ().material.color.a = 0;
     }
 
+    IEnumerator PowerUpFinish()
+    {
+        yield return new WaitForSeconds(5f);
+        this.GetComponent<BoxCollider2D>().enabled = true;
+        Debug.Log("desligou o power up");
+    }
 
 }
